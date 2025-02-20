@@ -1,10 +1,30 @@
 <h1>Books#index</h1>
 <h1>new Book</h1>
-  <div class="field">
-    <%= f.label :Title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="area">
-    <%= f.label :Opinion %><br>
-    <%= f.text_area :body %>
+  <%= form_with model: @book.new do |f| %>
+    <div class="field">
+      <label>Title</label><br>
+      <%= f.text_field :title %>
+    </div>
+    <div class="field">
+      <label>Opinion</label><br>
+      <%= f.text_area :body %>
+    </div>
+    <%= f.submit 'Create Book' %>
+  <% end %>
+
+<h1>Books</h1>
+  <% @book.each do |book| %>
+  <table>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>Opinion</th>
+    </tr>
+    <tr>
+      <td><%= book.user.name %></td>
+      <td><%= book.title %></td>
+      <td><%= book.body %></td>
+    </tr>
+  </table>
+  <% end %>
 <p>Find me in app/views/books/index.html.erb</p>
