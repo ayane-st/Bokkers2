@@ -6,17 +6,29 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <header>
+      <li>Bookers</li>
       <% if user_signed_in? %>
+        <li>
+          <%= link_to "Home", user_path(current_user.id) %>
+        </li>
+        <li>
+          <%= link_to "Users", users_path %>
+        </li>
+        <li>
+          <%= link_to "Books", books_path %>
+        </li>
         <li>
           <%= link_to "logout", destroy_user_session_path, method: :delete %>
         </li>
       <% else %>
+        <li>Home</li>
+        <li>About</li>
         <li>  
           <%= link_to "sign up", new_user_registration_path %>
         </li>
@@ -24,6 +36,7 @@
           <%= link_to "sign in", new_user_session_path %>
         </li>
       <% end %>
+
     </header>
     <%= yield %>
   </body>
