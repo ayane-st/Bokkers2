@@ -1,5 +1,5 @@
 <h1>Books#show</h1>
-  <%= form_with model: @book do |f| %>
+  <%= form_with model: @book.new do |f| %>
     <div class="field">
       <label>Title</label><br>
       <%= f.text_field :title %>
@@ -9,5 +9,44 @@
       <%= f.text_area :body %>
     </div>
     <%= f.submit 'Create Book' %>
+  <% end %>
+
+<h1>Books</h1>
+  <% @book.each do |book| %>
+    <% if book.user == current_user %>
+      <table>
+        <tr>
+          <th></th>
+          <th>Title</th>
+          <th>Opinion</th>
+          <th></th>
+          <th></th>
+        </tr>
+        <tr>
+          <td><%= book.user.name %></td>
+          <td>
+            <%= link_to book_path(book.id) do %>
+              <%= book.title %>
+            <% end %>
+          </td>
+          <td><%= book.body %></td>
+          <td><%= link_to "edit", edit_book_path(@book) %></td>
+          <td><%= link_to "destroy", books_path, method: :destroy %></td>
+        </tr>
+      </table>
+    <% else %>
+      <table>
+        <tr>
+          <th></th>
+          <th>Title</th>
+          <th>Opinion</th>
+        </tr>
+        <tr>
+          <td><%= book.user.name %></td>
+          <td><%= book.title %></td>
+          <td><%= book.body %></td>
+        </tr>
+      </table>
+    <% end %>
   <% end %>
 <p>Find me in app/views/books/show.html.erb</p>
