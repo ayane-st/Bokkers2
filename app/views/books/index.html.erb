@@ -1,34 +1,5 @@
-<h1>Books#index</h1>
-<h1>new Book</h1>
-  <%= form_with model: @book.new do |f| %>
-    <div class="field">
-      <label>Title</label><br>
-      <%= f.text_field :title %>
-    </div>
-    <div class="field">
-      <label>Opinion</label><br>
-      <%= f.text_area :body %>
-    </div>
-    <%= f.submit 'Create Book' %>
-  <% end %>
+<%= render 'users/user_info', user: current_user %>
 
-<h1>Books</h1>
-  <% @book.each do |book| %>
-  <table>
-    <tr>
-      <th></th>
-      <th>Title</th>
-      <th>Opinion</th>
-    </tr>
-    <tr>
-      <td><%= book.user.name %></td>
-      <td>
-        <%= link_to book_path(book.id) do %>
-        <%= book.title %>
-        <% end %>
-      </td>
-      <td><%= book.body %></td>
-    </tr>
-  </table>
-  <% end %>
-<p>Find me in app/views/books/index.html.erb</p>
+<%= render 'new_book', book: @new_book %>
+
+<%= render 'books_index', books: @books %>

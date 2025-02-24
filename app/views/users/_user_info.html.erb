@@ -1,0 +1,15 @@
+<div>
+  <h1>User info template</h1>
+  <%= image_tag user.get_profile_image(100,100) %><br>
+  <table>
+    <tr>
+      <td>name</td>
+      <td><%= user.name %></td>
+    </tr>
+    <tr>
+      <td>introduction</td>
+      <td><%= user.introduction %></td>
+    </tr>
+  </table>
+  <%= link_to "プロフィール編集", user_path(current_user.id) %>
+</div>

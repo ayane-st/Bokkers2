@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <script src="https://kit.fontawesome.com/4ee0efb882.js" crossorigin="anonymous"></script>>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -14,6 +14,7 @@
     <header>
       <li>Bookers</li>
       <% if user_signed_in? %>
+        
         <li>
           <%= link_to "Home", user_path(current_user.id) %>
         </li>
@@ -43,6 +44,9 @@
 
     </header>
     <%= yield %>
+    <footer>
+     Copyright Infratop.Inc
+    </footer>
   </body>
 </html>
 

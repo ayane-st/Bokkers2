@@ -2,15 +2,15 @@
 <%= form_with model: @user do |f| %>
   <div class="field">
     <label>Name</label><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, autofocus: true %>
   </div>
   <div class="field">
     <label>Image</label><br>
     <%= f.file_field :profile_image, accept: "image/*" %>
+  </div>
   <div class="field">
     <label>Introduction</label><br>
     <%= f.text_area :introduction %>
+  </div>
   <%= f.submit 'Update User' %>
   <% end %>
-
-<p>Find me in app/views/users/edit.html.erb</p>
