@@ -1,19 +1,4 @@
 class UsersController < ApplicationController
-  def new
-    @user = User.new
-  end
-
-  def create
-    @user = User.new
-    if @user.save(user_params)
-      flash[:notice]="You have created user successfully."
-      redirect_to user_path(user.id)
-    else
-      flash[:notice]="error"
-      render :new
-    end
-  end
-
   
   def show
     @user = User.find(params[:id])
@@ -23,16 +8,18 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    if @user.id != current_user.id
+      redirect_to user_path(current_user.id)
+    end
   end
 
   def update
-    user = User.find(params[:id])
-    if user.update(user_params)
+    @user = User.find(params[:id])
+    if @user.update(user_params)
       flash[:notice]="You have updated user successfully."
-      redirect_to user_path(user.id)
+      redirect_to user_path(@user.id)
     else
-      flash[:notice]="error"
-      redirect_to user_path(user.id)
+      render :edit
     end
   end
 
@@ -48,7 +35,7 @@ class UsersController < ApplicationController
     @book.user_id = current_user.id
     if @book.save
       flash[:notice]="You have created book successfully."
-      redirect_to books_path
+      redirect_to book_path(@book.id)
     else
       flash[:notice]="error"
       redirect_to books_path
